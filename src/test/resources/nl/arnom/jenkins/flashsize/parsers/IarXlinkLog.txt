@@ -1,0 +1,121 @@
+
+Errors: none
+Warnings: none
+	C:\CC\Atmel\511B\avr\bin\iccavr.exe sensor.c -o sensor.r900 -DSW_VERSION=41 -DPRODY -DSTANDARD -DTHOR_MOTOR -f comp329.xcl -IC:\CC\Atmel\511B\avr\inc -IC:\CC\Atmel\511B\avr\inc\CLIB -I.   -Imcu\avr -DDEBUG -lC sensor.lst00
+
+   IAR Atmel AVR C/C++ Compiler V5.11B/W32
+   Copyright 1996-2008 IAR Systems. All rights reserved.
+
+ 1 018 bytes of CODE memory (+ 6 bytes shared)
+     8 bytes of DATA memory
+
+Errors: none
+Warnings: none
+	C:\CC\Atmel\511B\avr\bin\xlink -f link329.xcl -IC:\CC\Atmel\511B\avr\lib\clib -l PRODY_B_S_U2.map algo.r900   foo.r900   e2p.r900   i2c.r900   spi.r900   i2c_ll.r900   inout.r900   input.r900   main.r900   driver.r900   helper.r900   tester.r900   bar.r900   beer.r900   kale.r900   banana.r900   river.r900   scooter.r900   time.r900   twilight.r900   sensor.r900 -y(CODE) -Oubrof8=PRODY_B_S_U2_v41.d90 -Fintel-extended -o PRODY_B_S_U2_v41.a90 -Ointel-extended,(XDATA)=eeprom
+
+     IAR Universal Linker V4.61C/386
+     Copyright 1987-2008 IAR Systems. All rights reserved.
+
+ 29 925 bytes of CODE  memory (+  5 absolute, 20 range fill )
+  1 468 bytes of DATA  memory (+ 57 absolute  )
+      0 bytes of XDATA memory (+  6 absolute  )
+
+Errors: none
+Warnings: none
+
+
+D:\jenkins\workspace\PRODY\PRODY-SW\product\PRODY\SW\Controller>prep32 -ff HEX16 -rf PRODY_B_S_U2_v41.a90 -sa 007ffb-007ffb -fa 13 -ra -srl 16 -wf PRODY_B_S_U2_DUCK_U2_41.a90
+
+Prep 1.27 (C) 1995,1996,1997,1998 Buts Electronic Systems
+
+>> Set file format to Intel 16-bit hexadecimal
+>> Read file [PRODY_B_S_U2_v41.a90]
+>> Set area to 00007FFB-00007FFB (00000001)
+>> Fill area 00007FFB-00007FFB with byte value 13
+>> Reset area
+>> Set record length to 16
+>> Write file [PRODY_B_S_U2_DUCK_U2_41.a90]
+
+Done.
+
+	C:\CC\Atmel\511B\avr\bin\iccavr.exe sensor.c -o sensor.r902 -DSW_VERSION=41 -DPRODY_EXT -DTHOR_MOTOR -f comp329.xcl -IC:\CC\Atmel\511B\avr\inc -IC:\CC\Atmel\511B\avr\inc\CLIB -I.   -Imcu\avr -DDEBUG -lC sensor.lst02
+
+   IAR Atmel AVR C/C++ Compiler V5.11B/W32
+   Copyright 1996-2008 IAR Systems. All rights reserved.
+
+ 1 018 bytes of CODE memory (+ 6 bytes shared)
+     8 bytes of DATA memory
+
+Errors: none
+Warnings: none
+	C:\CC\Atmel\511B\avr\bin\xlink -f link329.xcl -IC:\CC\Atmel\511B\avr\lib\clib -l PRODY_EP_U2.map algo.r902   foo.r902   e2p.r902   i2c.r902   spi.r902   i2c_ll.r902   inout.r902   input.r902   main.r902   driver.r902   helper.r902   tester.r902   bar.r902   beer.r902   kale.r902   banana.r902   river.r902   scooter.r902   time.r902   twilight.r902   sensor.r902 -y(CODE) -Oubrof8=PRODY_EP_U2_v41.d90 -Fintel-extended -o PRODY_EP_U2_v41.a90 -Ointel-extended,(XDATA)=eeprom
+
+     IAR Universal Linker V4.61C/386
+     Copyright 1987-2008 IAR Systems. All rights reserved.
+
+ 28 901 bytes of CODE  memory (+  5 absolute, 20 range fill )
+
+  1 502 bytes of DATA  memory (+ 57 absolute  )
+
+      0 bytes of XDATA memory (+  6 absolute  )
+
+
+
+Errors: none
+
+Warnings: none
+
+c:/Atmel/530/avr/bin/iccavr.exe mcu/avr/uart.c -o PRODX_output_debug/uart.r90 -f mcu/avr/comp168pa.xcl -Ihardware/sw/ -Imcu/avr/ -I./src/ -Ic:/Atmel/530/avr/inc/CLIB -Ic:/Atmel/530/avr/inc -z9 -lC PRODX_output_debug/uart.lst --dependencies=m PRODX_output_debug/uart.tmp
+
+
+   IAR C/C++ Compiler V5.30.4.50183/W32 for Atmel AVR
+
+   Copyright 1996-2009 IAR Systems AB.
+
+
+
+ 1 366 bytes of CODE memory (+ 10 bytes shared)
+
+    74 bytes of DATA memory (+  8 bytes shared)
+
+
+
+Errors: none
+
+Warnings: none
+
+************************** Link Debug ******************************
+c:/Atmel/530/avr/bin/xlink -Ic:/Atmel/530/avr/lib/clib -y(CODE) -Fintel-extended -Ointel-extended,(XDATA)=eeprom -Oubrof8=PRODX_DEBUG.d90 PRODX_output_debug/network.r90 PRODX_output_debug/mcu_apl.r90 PRODX_output_debug/memory.r90 PRODX_output_debug/serial.r90 PRODX_output_debug/transform.r90 PRODX_output_debug/e2p.r90 PRODX_output_debug/protobuf.r90 PRODX_output_debug/spi.r90 PRODX_output_debug/buffer.r90 PRODX_output_debug/tables.r90 PRODX_output_debug/uart.r90 PRODX_output_debug/mcu.r90 PRODX_output_debug/input.r90 PRODX_output_debug/rs485.r90 PRODX_output_debug/cooler.r90 PRODX_output_debug/config.r90 PRODX_output_debug/heater.r90 PRODX_output_debug/status.r90 PRODX_output_debug/main.r90 PRODX_output_debug/helper.r90 PRODX_output_debug/tester.r90 PRODX_output_debug/time.r90   -f mcu/avr/link168pa.xcl -l PRODX_output_debug/PRODX_DEBUG.map -o PRODX_DEBUG
+
+     IAR Universal Linker V4.61L/W32
+     Copyright (C) 1987-2009 IAR Systems AB.
+
+ 12 623 bytes of CODE memory (+             4 range fill )
+    873 bytes of DATA memory (+ 38 absolute )
+
+Errors: none
+Warnings: none
+
+************************* Debug finished ****************************
+*************************** Link Release ****************************
+c:/Atmel/530/avr/bin/xlink -Ic:/Atmel/530/avr/lib/clib -y(CODE) -Fintel-extended -Ointel-extended,(XDATA)=eeprom -Oubrof8=PRODX.d90 PRODX_output/network.r90 PRODX_output/mcu_apl.r90 PRODX_output/memory.r90 PRODX_output/serial.r90 PRODX_output/transform.r90 PRODX_output/e2p.r90 PRODX_output/protobuf.r90 PRODX_output/spi.r90 PRODX_output/buffer.r90 PRODX_output/tables.r90 PRODX_output/uart.r90 PRODX_output/mcu.r90 PRODX_output/input.r90 PRODX_output/rs485.r90 PRODX_output/cooler.r90 PRODX_output/config.r90 PRODX_output/heater.r90 PRODX_output/status.r90 PRODX_output/main.r90 PRODX_output/helper.r90 PRODX_output/tester.r90 PRODX_output/time.r90  -f mcu/avr/link168pa.xcl -l PRODX_output/PRODX.map -o PRODX
+
+     IAR Universal Linker V4.61L/W32
+     Copyright (C) 1987-2009 IAR Systems AB.
+
+
+
+ 12 631 bytes of CODE memory (+             4 range fill )
+
+    873 bytes of DATA memory (+ 38 absolute )
+
+
+
+Errors: none
+
+Warnings: none
+
+
+
+c:/arm/tools/cp -f -a PRODX.a90 PRODX_v4.a90
+************************* Release finished **************************

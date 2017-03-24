@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'org.jenkins-ci.jpi' version '0.22.0'
+}
+
+group 'nl.arnom.jenkins'
+version '0.0.1-SNAPSHOT'
+description 'Track the amount of flash you use for your embedded application.'
+
+sourceCompatibility = '1.6'
+targetCompatibility = '1.6'
+
+jenkinsPlugin {
+    coreVersion = '1.650'
+    shortName = 'flash-size'
+    displayName = 'Flash Size plugin'
+    gitHubUrl = 'https://github.com/itavero/flash-size'
+
+    developers {
+        developer {
+            id 'itavero'
+            name 'Arno Moonen'
+            email 'info@arnom.nl'
+        }
+    }
+
+    licenses {
+        license {
+            name 'MIT License'
+            distribution 'repo'
+        }
+    }
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}

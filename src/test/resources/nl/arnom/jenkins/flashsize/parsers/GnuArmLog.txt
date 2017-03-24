@@ -1,0 +1,55 @@
+Some other
+random text
+is put here
+h:/Arm/4.8.3/bin/arm-none-eabi-size -A --radix=8 PRODQ.elf PRODQ2.elf
+PRODQ.elf  :
+section              size        addr
+.text              236724       65536
+.data                 772   537379328
+Total             1886577
+
+PRODQ2.elf  :
+section              size        addr
+.text              236724       65536
+.heap               32767   268435456
+Total             1886577
+
+Some other
+random text
+is put here
+h:/Arm/4.8.3/bin/arm-none-eabi-size -A PRODQ3.elf PRODQ4.elf
+PRODQ3.elf  :
+section              size        addr
+.text              236824       65536
+.stack                512   537378816
+Total             1886577
+
+PRODQ4.elf  :
+section              size        addr
+.heap               32767   268435456
+.data                 772   537379328
+Total             1886577
+
+Some other
+random text
+is put here
+$ arm-none-eabi-size --format=Berkeley -d ranlib size
+text    data    bss     dec     hex     filename
+294880  81920   11592   388392  5ed28   ranlib
+294880  81920   11888   388688  5ee50   size
+
+$ arm-none-eabi-size --format=SysV ranlib size
+ranlib  :
+section         size         addr
+.text         294880         8192
+.data          81920       303104
+.bss           11592       385024
+Total         388392
+
+
+size  :
+section         size         addr
+.text         294880         8192
+.data          81920       303104
+.bss           11888       385024
+Total         388688

@@ -1,0 +1,110 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout"
+         xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:i="jelly:fmt" xmlns:p="/lib/hudson/project">
+    <l:layout norefresh="true">
+        <st:include it="${it.build}" page="sidepanel.jelly"/>
+        <l:main-panel>
+            <j:set var="report" value="${it.report}"/>
+            <h2>Flash Size</h2>
+            <p>
+                ${%flashsize.report.files}:
+                <ul>
+                    <j:forEach items="${report.files}" var="file">
+                        <li>
+                            <a href="#${report.getStrippedName(file)}">${file}</a>
+                        </li>
+                    </j:forEach>
+                </ul>
+            </p>
+
+            <style type="text/css">
+                table[id^='flashsize-'] { width: auto; }
+                table[id^='flashsize-'] .number { text-align: right; }
+                table[id^='flashsize-'] td { min-width: 125px; }
+                table[id^='flashsize-'] .section-incl { font-weight:bold; }
+                table[id^='flashsize-'] .section-excl { text-decoration: line-through; }
+            </style>
+
+            <j:forEach items="${report.files}" var="file">
+                <j:set var="fileStripped" value="${report.getStrippedName(file)}"/>
+                <j:set var="toolCount" value="${report.getToolCountForFile(file)}"/>
+                <j:set var="totalSize" value="${report.getTotalSizeOfFile(file)}"/>
+                <j:set var="totalSizeDelta" value="${it.getDeltaFromPreviousReport(file)}"/>
+                <a name="${fileStripped}"/>
+                <h3>${%flashsize.report.file}: ${file}</h3>
+                <table class="pane sortable stripped-even" id="flashsize-${fileStripped}">
+                    <thead>
+                        <tr>
+                            <th class="pane-header">${%flashsize.report.section}</th>
+                            <th class="pane-header">${%flashsize.report.size}</th>
+                            <j:if test="${totalSizeDelta != null}">
+                                <th class="pane-header">${%flashsize.report.delta}</th>
+                            </j:if>
+                            <j:if test="${toolCount > 1}">
+                                <th class="pane-header">${%flashsize.report.parser}</th>
+                            </j:if>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <j:forEach var="section" items="${report.getSections(file)}">
+                            <j:set var="secSize" value="${report.getSize(file, section)}"/>
+                            <tr>
+                                <j:choose>
+                                    <j:when test="${report.sectionIsIncluded(section)}">
+                                        <td class="pane section-incl" data="${section}"
+                                            tooltip="${section} (${%flashsize.report.abbr.included})">
+                                            ${section}
+                                        </td>
+                                    </j:when>
+                                    <j:otherwise>
+                                        <td class="pane section-excl" data="${section}"
+                                            tooltip="${section} (${%flashsize.report.abbr.excluded})">
+                                        ${section}
+                                        </td>
+                                    </j:otherwise>
+                                </j:choose>
+                                <td class="pane number" data="${secSize.getSize().asLong()}"
+                                    tooltip="${secSize.getSize().toBytesString()}">${secSize.getSize()}
+                                </td>
+                                <j:if test="${totalSizeDelta != null}">
+                                    <j:set var="sizeDelta" value="${it.getDeltaFromPreviousReport(secSize)}"/>
+                                    <j:choose>
+                                        <j:when test="${sizeDelta != null}">
+                                            <td class="pane number" data="${sizeDelta.asLong()}"
+                                                tooltip="${sizeDelta.toBytesString()}">${sizeDelta}
+                                            </td>
+                                        </j:when>
+                                        <j:otherwise>
+                                            <td class="pane number" data="0" tooltip="${%flashsize.report.no_history}">-
+                                            </td>
+                                        </j:otherwise>
+                                    </j:choose>
+                                </j:if>
+                                <j:if test="${toolCount > 1}">
+                                    <td class="pane" data="${secSize.getParserId()}">
+                                        ${secSize.getParser().getToolName()}
+                                    </td>
+                                </j:if>
+                            </tr>
+                        </j:forEach>
+                    </tbody>
+                    <tfoot>
+                        <tr class="sortbottom">
+                            <td class="pane-header" data="0">${%flashsize.report.total}</td>
+                            <td class="pane-header number" data="${totalSize.asLong()}"
+                                tooltip="${totalSize.toBytesString()}">${totalSize}
+                            </td>
+                            <j:if test="${totalSizeDelta != null}">
+                                <td class="pane-header number" data="${totalSizeDelta.asLong()}"
+                                    tooltip="${totalSizeDelta.toBytesString()}">${totalSizeDelta}
+                                </td>
+                            </j:if>
+                            <j:if test="${toolCount > 1}">
+                                <td class="pane-header number" data="${toolCount}">${toolCount}</td>
+                            </j:if>
+                        </tr>
+                    </tfoot>
+                </table>
+            </j:forEach>
+        </l:main-panel>
+    </l:layout>
+</j:jelly>

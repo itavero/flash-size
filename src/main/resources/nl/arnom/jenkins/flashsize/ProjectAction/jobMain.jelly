@@ -1,0 +1,54 @@
+<j:jelly xmlns:j="jelly:core" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form"
+         xmlns:i="jelly:fmt">
+    <j:if test="${it.showSummary()}">
+        <j:set var="lastBuild" value="${it.getLastResultBuild()}"/>
+        <table style="margin-left:1em;">
+            <t:summary icon="graph.png">
+                <h4>Flash Size</h4>
+                <style type="text/css">
+                    #flashSizeListing { width: auto; }
+                    #flashSizeListing .number { text-align: right; }
+                    #flashSizeListing td { min-width: 125px; }
+                </style>
+
+                <j:set var="report" value="${it.report}"/>
+
+                <table class="pane sortable stripped-even" id="flashSizeListing">
+                    <thead>
+                        <tr>
+                            <th class="pane-header">${%flashsize.summary.file}</th>
+                            <th class="pane-header">${%flashsize.summary.size}</th>
+                            <th class="pane-header">${%flashsize.summary.delta}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <j:forEach items="${report.files}" var="file">
+                            <j:set var="totalSize" value="${report.getTotalSizeOfFile(file)}"/>
+                            <tr>
+                                <td class="pane" data="${file}">
+                                    <a href="${lastBuild}/${it.urlName}/#${report.getStrippedName(file)}">${file}</a>
+                                </td>
+                                <td class="pane number" data="${totalSize.asLong()}"
+                                    tooltip="${totalSize.toBytesString()}">
+                                    ${totalSize}
+                                </td>
+                                <j:set var="delta" value="${it.getDeltaFromPreviousReport(file)}"/>
+                                <j:choose>
+                                    <j:when test="${delta != null}">
+                                        <td class="pane number" data="${delta.asLong()}"
+                                            tooltip="${delta.toBytesString()}">
+                                            ${delta}
+                                        </td>
+                                    </j:when>
+                                    <j:otherwise>
+                                        <td class="pane number" data="0">-</td>
+                                    </j:otherwise>
+                                </j:choose>
+                            </tr>
+                        </j:forEach>
+                    </tbody>
+                </table>
+            </t:summary>
+        </table>
+    </j:if>
+</j:jelly>
